@@ -54,7 +54,6 @@ app.use(cors());
 app.use(express.static("www"));
 app.post("/api/submit-text", textController.handleTextSubmission);
 
-
 app.listen(3000, (err) => {
   if (err) {
     console.log("Error while starting server :: ", err);

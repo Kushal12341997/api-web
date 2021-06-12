@@ -28,7 +28,7 @@
             </div>
           </div>
 
-          <div class="inner cover">
+          <div class="inner cover" id="main-body">
             <h1 class="cover-heading">
               Enter the text to be summarized in the box below
             </h1>
@@ -39,6 +39,7 @@
                   class="form-control"
                   placeholder="Enter the Text to be summarized"
                   id="summarize-content"
+                  style="height: 400px"
                 ></textarea>
               </div>
               <button onclick="handleSubmit()" class="btn btn-lg btn-default">
@@ -55,7 +56,17 @@
         json["text"] = document.getElementById("summarize-content").value;
         axios
           .post("/api/submit-text", json)
-          .then(() => console.log("Done"))
+          .then((response) => {
+            console.log(response);
+            const htmlToAdd =
+              '<div class="card-body" style="background-color: white; color: black">' +
+              '<h5 class="card-title">Summarized Text</h5>' +
+              '<p class="card-text">' +
+              response.data +
+              "</p>" +
+              "</div>";
+            document.getElementById("main-body").innerHTML += htmlToAdd;
+          })
           .catch((err) => console.log("Error :: ", err));
       }
     </script>

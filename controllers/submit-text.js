@@ -9,8 +9,8 @@ const handleTextSubmission = (req, res, next) => {
     data: requestBody,
   })
     .then((response) => {
-      console.log("Response :: ", response);
-      res.status(200).send("");
+      console.log("Sending response now");
+      res.status(200).send(response.data);
     })
     .catch((err) => {
       console.log("Error :: ", err);
